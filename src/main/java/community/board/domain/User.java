@@ -1,14 +1,15 @@
 package community.board.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.aspectj.lang.annotation.Before;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class User extends BaseTimeEntity {
 
     @Id @GeneratedValue
@@ -19,14 +20,16 @@ public class User extends BaseTimeEntity {
     private String username;
 
     @Column(unique = true, nullable = true)
-    protected String nickname;
+    private String nickname;
 
     @Column(unique = true)
-    protected String email;
-    protected String password;
+    private String email;
+
+    private String password;
 
     @Enumerated(EnumType.STRING)
-    protected UserLevel userLevel;
+    private UserLevel userLevel;
+
     public void modify(String nickname, String password) {
         this.nickname = nickname;
         this.password = password;
