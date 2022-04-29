@@ -7,3 +7,7 @@ Spring Boot, JPA 프로젝트
 2. UserRepositoryTest BCryptPasswordEncoder 빈 등록을 통해 암호화 확인
 3. UserService dto에 따른 service 구현
 
+### 04/27/22 ~ 04/29/22
+
+1. Thymeleaf 와 Bootstrap을 이용하여 화면 개발
+![img.png](img/img-1.png)
