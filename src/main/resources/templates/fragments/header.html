@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head (title)">
     <!-- Required meta tags -->
@@ -25,29 +25,22 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">홈</a>
+                        <a sec:authorize="isAnonymous()" class="nav-link" href="/auth/user/login">로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/board">게시판</a>
+                        <a sec:authorize="isAnonymous()" class="nav-link" href="/auth/user/save">회원가입</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/login">로그인</a>
+                        <a sec:authorize="isAuthenticated()" class="nav-link" href="/board/save">글쓰기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/save">회원가입</a>
+                        <a sec:authorize="isAuthenticated()" class="nav-link" href="/user/update">회원정보</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/board/save">글작성</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user/users">회원정보</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">로그아웃</a>
+                        <a sec:authorize="isAuthenticated()" class="nav-link" href="/logout">로그아웃</a>
                     </li>
                 </ul>
 
