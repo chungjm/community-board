@@ -11,3 +11,10 @@ Spring Boot, JPA 프로젝트
 
 1. Thymeleaf 와 Bootstrap을 이용하여 화면 개발
 ![img.png](img/img-1.png)
+
+### 11/5/22
+
+1. 회원 가입 화면 개발
+![img.png](img-2/img.png)
+
+2. 회원가입 api test
