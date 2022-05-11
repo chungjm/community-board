@@ -1,17 +1,13 @@
 package community.board.service;
 
+import community.board.config.auth.PrincipalDetail;
 import community.board.domain.User;
-import community.board.dto.UserDto.SaveRequest;
 import community.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -19,33 +15,27 @@ import java.util.Map;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private final BCryptPasswordEncoder encoder;
-
+    /**
+     * 회원가입
+     */
     @Transactional
-    public Long join(SaveRequest dto) {
-        dto.setPassword(encoder.encode(dto.getPassword()));
-        return userRepository.save(dto.toEntity()).getId();
+    public Long save(User user) {
+        String encodedPwd = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPwd);
+        return userRepository.save(user).getId();
     }
 
-    private Map<String, String> validateHandling(Errors errors) {
-        HashMap<String, String> validatorResult = new HashMap<>();
-
-        errors.getFieldErrors().
-                forEach(error -> {
-                    String validKeyName = String.format("valid_%s", error.getField());
-                    validatorResult.put(validKeyName, error.getDefaultMessage());
-                    });
-
-        return validatorResult;
-    }
-
+    /**
+     * 회원수정
+     */
     @Transactional
-    public Long modify(SaveRequest dto) {
-        User findUser = userRepository.findById(dto.toEntity().getId())
-                .orElseThrow(() -> new IllegalArgumentException());
-        String encPassword = encoder.encode(findUser.getPassword());
-        findUser.modify(dto.getNickname(), encPassword);
+    public Long update(User user, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+        User findUser = userRepository.findById(user.getId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 회원이 없습니다. id=" + user.getId()));
+        findUser.update(bCryptPasswordEncoder.encode(user.getPassword()), user.getNickname());
+        principalDetail.setUser(findUser);
         return findUser.getId();
     }
 
