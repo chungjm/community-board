@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: head ('로그인')">
-  <link rel="stylesheet" th:href="@{../css/user-save.css}">
-</head>
+<head th:replace="fragments/header :: head ('로그인')"></head>
 
 <body class="text-center d-flex flex-column h-100">
 <header th:replace="fragments/header :: header"></header>
@@ -38,6 +36,9 @@
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script th:src="@{/js/validation.js}"></script>
+<script th:src="@{/js/user.js}"></script>
 </body>
 
 </html>

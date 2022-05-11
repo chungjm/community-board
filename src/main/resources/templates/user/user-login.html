@@ -26,7 +26,8 @@
       </div>
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me"> Remember me
+          <input type="checkbox" name="remember-me" id="rememberMe">
+          <label for="rememberMe" aria-describedby="rememberMeHelp">로그인 유지</label>
         </label>
       </div>
       <button class="w-100 btn btn-lg btn-primary" id="btn-login">로그인</button>
@@ -39,6 +40,9 @@
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script th:src="@{/js/user.js}"></script>
 </body>
 
 </html>

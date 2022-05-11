@@ -2,7 +2,7 @@
 
 let index = {
     init: function () {
-        $("#btn-save").on("click", () => { //this를 바인딩하기 위해 화샬표 함수 사용
+        $("#btn-save").on("click", () => { //this를 바인딩하기 위해서 사용
             let form = document.querySelector("#needs-validation");
             if (form.checkValidity() == false) {
                 console.log("회원가입 안됨")
@@ -63,4 +63,5 @@ let index = {
         });
     }
 }
+
 index.init();
