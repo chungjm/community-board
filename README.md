@@ -15,6 +15,10 @@ Spring Boot, JPA 프로젝트
 ### 11/5/22
 
 1. 회원 가입 화면 개발
-![img.png](img-2/img.png)
+![img.png](img/img-2.png)
 
 2. 회원가입 api test
+
+### 12/5/22
+
+1. 로그인 개발 및 스프링 시큐리티를 통해 로그인 세션 부여
