@@ -22,3 +22,8 @@ Spring Boot, JPA 프로젝트
 ### 12/5/22
 
 1. 로그인 개발 및 스프링 시큐리티를 통해 로그인 세션 부여
+
+2. 게시판 CRUD
+![img.png](img/img-3.png)
+![img.png](img/img-4.png)
+
