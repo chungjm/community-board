@@ -33,11 +33,10 @@
         <div class="form-floating m-3">
             <p th:text="${board.content}"></p>
         </div>
-
-
     </div>
+
     <span th:if="${board.user.id == #authentication.principal.id}">
-        <a th:href="@{/board/{id}/update(id=${board.id})}" class="btn btn-warning" id="btn-update">수정</a>
+        <a th:href="@{/board/{id}/update(id=${board.id})}" class="btn btn-warning">수정</a>
         <button class="btn btn-danger" id="btn-delete">삭제</button>
     </span>
     <button class="btn btn-secondary" onclick="history.back()">뒤로</button>

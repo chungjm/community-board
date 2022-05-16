@@ -7,39 +7,54 @@
 
 <header th:replace="fragments/header :: header"></header>
 
+<div class="d-flex">
+    <h1>게시판</h1>
+</div>
+
+<div class="d-flex" style="position: relative; top: 30px;">
+    <h2 style="margin-right: 10px;">총 게시판 수:</h2>
+    <h2 th:text="${boards.totalElements}"></h2>
+</div>
+
+<form class="d-flex" style="position: relative; top: 40px;" method="get" th:action="@{/}">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+           id="search" name="search" th:value="${param.search}">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+</form>
+
 <!-- Begin page content -->
 <main class="flex-shrink-0">
     <div class="container">
         <div class="p-2"></div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+        <div th:each="board : ${boards}"
+             class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <a th:href="@{/board/{id}(id=${board.id})}" class="a-title">
+                    <h3 class="mb-0 title" style="padding-bottom: 10px;" th:text="${board.title}"></h3>
+                </a>
+                <div class="card-text mb-auto" th:text="${board.content}">
+                </div>
+                <div class="mb-1 text-muted" style="padding-top: 15px;"
+                     th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd')}"></div>
             </div>
         </div>
     </div>
 </main>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled' : '' ">
+            <a class="page-link" th:href="@{/(page=${boards.pageable.pageNumber - 1}, search=${param.search})}">Previous</a>
+        </li>
+        <li class="page-item" th:classappend="${i == boards.pageable.pageNumber + 1} ? 'active' : '' " th:each="i : ${#numbers.sequence(startPage, endPage)}">
+            <a class="page-link" th:href="@{/(page=${i - 1}, search=${param.search})}" th:text="${i}">1</a>
+        </li>
+        <li class="page-item" th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled' : '' ">
+            <a class="page-link" th:href="@{/(page=${boards.pageable.pageNumber + 1}, search=${param.search})}">Next</a>
+        </li>
+    </ul>
+</nav>
+
 
 <footer th:replace="fragments/footer :: footer"></footer>
 
