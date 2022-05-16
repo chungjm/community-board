@@ -28,4 +28,14 @@ Spring Boot, JPA 프로젝트
 ![img.png](img/img-4.png)
 
 3. paging 처리
-[history](https://velog.io/@jmjmjames/JPA%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%8E%98%EC%9D%B4%EC%A7%95-%EC%B2%98%EB%A6%AC)
+
+4. [history](https://velog.io/@jmjmjames/JPA%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%8E%98%EC%9D%B4%EC%A7%95-%EC%B2%98%EB%A6%AC)
+
+
+### 14/5/22 - 16/5/22
+
+1. 댓글 기능 구현 추가
+
+2. 댓글 CRUD 구현
+
+3. [시현](https://www.youtube.com/watch?v=p_gaoagsb30)
